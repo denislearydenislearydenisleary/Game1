@@ -1,0 +1,53 @@
+package Game1;
+
+public class WolfList {
+  Wolf wolf;
+  WolfList next;
+  
+  public WolfList(Wolf wolf) {
+    this.wolf = wolf;
+    this.next = null;
+  }
+  
+  public WolfList(Wolf wolf, WolfList next) {
+    this.wolf = wolf;
+    this.next = next;
+  }
+  
+  public WolfList addWolf() {
+    return new WolfList(new Wolf.AcWolf(1, 1));
+  }
+  
+  public WolfList killWolf() {
+    return new WolfList(new Wolf.AcWolf(1, 1));
+  }
+  
+  public WolfList getLast() {
+    if (this.next == null) {
+      return this;
+    }
+    else {
+      return this.next.getLast();
+    }
+  }
+  
+  public WolfList changeWolfs() {
+    if (this.next == null) {
+     // return new WolfList(this.wolf.change());
+      return this;
+    }
+    else {
+      return this;
+   // return new WolfList(this.wolf.change(), this.next.changeWolfs());
+    }
+  }
+  
+  public WolfList killer() {
+    return new WolfList(new Wolf.AcWolf(1, 1));
+  }
+  
+  public WolfList mover() {
+    return new WolfList(new Wolf.AcWolf(1, 1));
+  }
+  
+}

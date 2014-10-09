@@ -1,0 +1,113 @@
+package Game1;
+import java.util.Random;
+
+public interface Wolf {
+  //int x;
+  //int y;
+   
+    Wolf makeWolf(int x, int y);
+    Wolf change(int x, int y);
+    Wolf move(String direct);
+    Boolean edgeHuh(int wdith, int height);
+    Boolean staffHuh(int x, int y);
+  
+  class AcWolf implements Wolf {
+    int x;
+    int y;
+    //int sp;
+    
+    public AcWolf(int x, int y) {
+      this.x = x;
+      this.y = y;
+    }
+       
+    public Wolf makeWolf(int x, int y) {
+      return new AcWolf(x, y);
+    }
+    
+    public Wolf change(int x, int y) {
+      if (this.staffHuh(x, y)) {
+      return new ScWolf(x, y);
+      }
+      else {
+        return this;
+      }
+    }
+    
+    public Wolf move(String direct) {
+      if (direct == "right") {
+      return new AcWolf(this.x++, this.y);
+      }
+      else if (direct == "left") {
+        return new AcWolf(this.x--, this.y);
+      }
+      
+      else if (direct == "up") {
+        return new AcWolf(this.x, this.y++);
+      }
+      else if (direct == "down") {
+        return new AcWolf(this.x, this.y--);
+      }
+      else {
+        return new AcWolf(this.x, this.y);
+      }
+    }
+    
+    public Boolean edgeHuh(int width, int height) {
+      return (this.x <= 0 || this.y <= 0 || this.x >= x || this.y >= y);
+    }
+    
+    public Boolean staffHuh(int x, int y) {
+      return true;
+    }
+  }
+
+  class ScWolf implements Wolf {
+    int x;
+    int y;
+    //int sp;
+    
+    public ScWolf(int x, int y) {
+      this.x = x;
+      this.y = y;
+    }
+    
+    public Wolf makeWolf(int x, int y) {
+      return new ScWolf(x, y);
+    }
+    
+    public Wolf change(int x, int y) {
+      return new ScWolf(this.x, this.y);
+    }
+    
+    public Wolf move(String direct) {
+      if (direct == "right") {
+      return new ScWolf(this.x++, this.y);
+      }
+      else if (direct == "left") {
+        return new ScWolf(this.x--, this.y);
+      }
+      
+      else if (direct == "up") {
+        return new ScWolf(this.x, this.y++);
+      }
+      else if (direct == "down") {
+        return new ScWolf(this.x, this.y--);
+      }
+      else {
+        return new ScWolf(this.x, this.y);
+      }
+    }
+    
+    public Boolean edgeHuh(int width, int height) {
+      return (this.x <= 0 || this.y <= 0 || this.x >= width || this.y >= height);
+    }
+    
+    public Boolean staffHuh(int x, int y) {
+      return true;
+    }
+  }
+    
+  }
+  
+
